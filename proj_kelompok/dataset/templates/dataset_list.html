@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Datasets</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #4c67a1, #97a5d6);
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .header .user-info img {
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .search-container {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .search-container input {
+            width: calc(100% - 100px);
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+        }
+        .search-container button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .dataset-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .dataset-item {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 10px;
+            width: calc(33% - 20px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .dataset-item h2 {
+            margin-top: 0;
+        }
+        .dataset-item p {
+            margin: 5px 0;
+        }
+        .add-dataset-btn {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Datasets</h1>
+            <div class="user-info">
+                <img src="user_avatar_url" alt="User Avatar" width="40" height="40">
+                <span>Radea Aji Prasojo</span>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search Dataset">
+            <button>Filters</button>
+        </div>
+        <a href="{% url 'dataset_create' %}" class="add-dataset-btn">Add Dataset</a>
+        <div class="dataset-list">
+            {% for dataset in datasets %}
+            <div class="dataset-item">
+                <h2>{{ dataset.nama_dataset }}</h2>
+                <p>Pembuat: {{ dataset.pembuat_dataset }}</p>
+                <p>Verifikator: {{ dataset.verifikator_dataset }}</p>
+                <p>Records: {{ dataset.jumlah_records }}</p>
+                <p>Attributes: {{ dataset.jumlah_attribute }}</p>
+                <p>Sumber: {{ dataset.deskripsi_sumber }}</p>
+                <p>Mulai: {{ dataset.tanggal_mulai }}</p>
+                <p>Selesai: {{ dataset.tanggal_selesai }}</p>
+                <p>Status: {{ dataset.status_penyelesaian }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
